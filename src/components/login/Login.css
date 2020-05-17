@@ -1,0 +1,27 @@
+.fundo {
+  width: 100vw;
+  height: 100vh;
+  background: #4cbbb9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.fundo .paper {
+  padding: 10px 90px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.fundo .paper button {
+    margin: 20px;
+    color: white;
+  }
+
+.error-login{
+  color: crimson;
+  font-size: 14px;
+  text-align: center;
+  margin-bottom: 5px;
+}

@@ -1,0 +1,51 @@
+header {
+  display: flex;
+  background: #4cbbb9;
+  color: white;
+  width: 100%;
+  box-shadow: 2px 4px 6px rgb(0, 0, 0, 0.2);
+}
+
+.header-ul,
+.header-li {
+  list-style: none;
+}
+
+.header-ul {
+  display: flex;
+}
+
+.header-li {
+  margin: 10px;
+  cursor: pointer;
+}
+
+.logo {
+  display: flex;
+  flex-direction: column;
+  font-size: 20px;
+}
+
+.menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+.user {
+  display: flex;
+  margin: 70px 0 0 0;
+  border-bottom: 3px solid #4cbbb9;
+  box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.user-img {
+  display: flex;
+  background: #4cbbb9;
+  width: 20%;
+  height: 100%;
+  margin-right: 100px;
+  border-radius: 70px;
+}
