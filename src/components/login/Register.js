@@ -7,7 +7,7 @@ import { Redirect } from 'react-router-dom'
 export default class Login extends React.Component {
 
     state = {
-        username: '',
+        nome: '',
         email: '',
         senha: '',
         imagem: '',
@@ -16,7 +16,7 @@ export default class Login extends React.Component {
 
     handleChange = e => {
         this.setState({ [e.target.name]: e.target.value })
-        console.log(this.state.username, this.state.email, this.state.senha, this.state.imagem)
+        console.log(this.state.nome, this.state.email, this.state.senha, this.state.imagem)
     }
 
     handleImage = e => {
@@ -25,7 +25,7 @@ export default class Login extends React.Component {
 
     registrar = () => {
         let data = new FormData()
-        data.append('username', this.state.username)
+        data.append('nome', this.state.nome)
         data.append('email', this.state.email)
         data.append('senha', this.state.senha)
         data.append('profpic', this.state.imagem)
@@ -41,7 +41,7 @@ export default class Login extends React.Component {
     }
 
     render() {
-        const { email, senha, username, imagem } = this.state
+        const { email, senha, nome } = this.state
         if (this.state.redirecionar)
             return <Redirect to="/" />
         return (
@@ -49,12 +49,11 @@ export default class Login extends React.Component {
                 <div className="login">
                     <Paper className="paper" elevation={3}>
                         <h2>Registro</h2>
-                        <TextField type="text" label="Username" name="username" onChange={this.handleChange} value={username} /> <br />
+                        <TextField type="text" label="Nome" name="nome" onChange={this.handleChange} value={nome} /> <br />
                         <TextField type="text" label="E-mail" name="email" onChange={this.handleChange} value={email} /> <br />
                         <TextField type="password" label="Senha" name="senha" onChange={this.handleChange} value={senha} /> <br />
                         <TextField type="file" accept="image/x-png,image/gif,image/jpeg" name="imagem" onChange={this.handleImage} /> <br />
                         <Button variant="contained" color="primary" disableElevation onClick={this.registrar}>Registrar</Button>
-
                     </Paper>
                 </div>
             </div>

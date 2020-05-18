@@ -57,7 +57,7 @@ export default class Login extends React.Component {
 
                         <div>Ainda não tem uma conta? <Link to="/registrar">Registre-se</Link></div>
 
-                        <div className="error-login">{validate.login}</div>
+                        <div className="error">{validate.login}</div>
 
                     </Paper>
                 </div>

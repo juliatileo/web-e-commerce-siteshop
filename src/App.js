@@ -24,7 +24,9 @@ export default class App extends React.Component {
         <ThemeProvider theme={theme}>
           {session.isLogado()
             ?
-            <Route exact path="/" component={Home} />
+            <>
+              <Route path="/" component={Home} />
+            </>
             :
             <Switch>
               <Route exact path="/" component={Login} />

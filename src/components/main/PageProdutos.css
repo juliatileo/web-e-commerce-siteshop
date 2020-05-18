@@ -1,0 +1,49 @@
+.produto-card {
+  display: flex;
+  width: 100%;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+
+.produto-container {
+  margin: 30px 0px 30px 0;
+}
+
+.produto-img {
+  height: 250px;
+  width: 250px;
+}
+
+.produto-img img {
+  height: 100%;
+  width: 100%;
+}
+
+.produto-content {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin-left: 100px;
+}
+
+.add-produto {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  margin: 10px;
+  background: #4cbbb9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 70px;
+  width: 70px;
+  height: 70px;
+  color: white;
+  cursor: pointer;
+  box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.modal-add-produto {
+  margin: 0 0 30px 0;
+  text-align: center;
+}

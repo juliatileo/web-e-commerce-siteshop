@@ -1,6 +1,7 @@
 import React from 'react'
 import './Header.css'
-import { Drawer, ListItem, ListItemText, List, Button } from '@material-ui/core'
+import Session from '../session/session'
+import { Drawer, Button } from '@material-ui/core'
 
 export default class Header extends React.Component {
     constructor() {
@@ -9,14 +10,20 @@ export default class Header extends React.Component {
             toggleDrawer: false
         }
     }
-
     render() {
+        const session = new Session()
+        const user = session.getUserInfo()[0]
         return (
             <>
                 <Drawer open={this.state.toggleDrawer} onClose={() => this.setState({ toggleDrawer: !this.state.toggleDrawer })}>
                     <div className="user">
-                        <div className="user-img">a</div>
-                        <div className="user-name">b</div>
+                        <div className="user-img" alt="user">
+                            <img src={user.profpic} />
+                        </div>
+                        <div className="user-name">{user.nome.length > 10 ? user.nome.substring(0, 10) + '...' : user.nome}</div>
+                        <div className="sair">
+                            <Button onClick={session.logout}>Sair</Button>
+                        </div>
                     </div>
                     <Button style={{
                         padding: '10px 150px'
@@ -25,7 +32,7 @@ export default class Header extends React.Component {
                 <header>
                     <ul className="header-ul">
                         <li className="menu">
-                            <span class="material-icons" onClick={() => this.setState({ toggleDrawer: !this.state.toggleDrawer })}>menu</span>
+                            <span className="material-icons" onClick={() => this.setState({ toggleDrawer: !this.state.toggleDrawer })}>menu</span>
                         </li>
                         <li className="header-li">
                             <div className="logo">SiteShop</div>
