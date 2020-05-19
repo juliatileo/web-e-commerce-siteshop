@@ -3,6 +3,7 @@ import Session from '../session/session'
 import url from '../session/url'
 import './PageProdutos.css'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 import { Drawer, Button, TextField } from '@material-ui/core'
 
 export default class PageProdutos extends React.Component {
@@ -16,11 +17,13 @@ export default class PageProdutos extends React.Component {
             maxparcelas: 0,
             imagem: '',
             validation: {
+                nome: '',
                 preco: '',
                 maxparcelas: ''
             },
             toggleDrawer: false,
-            user: {}
+            user: {},
+            isLoading: true
         }
     }
 
@@ -74,6 +77,14 @@ export default class PageProdutos extends React.Component {
     validate = () => {
         let valid = true
         let { validation } = this.state
+        if (this.state.nome.length > 75) {
+            valid = false
+            validation.nome = 'Nome muito grande'
+            this.setState({ validation })
+        } else {
+            validation.preco = ''
+            this.setState({ validation })
+        }
         if (this.state.preco < 1 || this.state.preco > 1000000) {
             valid = false
             validation.preco = 'Preço inválido'
@@ -82,7 +93,7 @@ export default class PageProdutos extends React.Component {
             validation.preco = ''
             this.setState({ validation })
         }
-        if (this.state.maxparcelas < 1 || this.state.max > 12) {
+        if (this.state.maxparcelas < 1 || this.state.maxparcelas > 12) {
             valid = false
             validation.maxparcelas = 'Parcelas inválidas'
             this.setState({ validation })
@@ -113,6 +124,7 @@ export default class PageProdutos extends React.Component {
                         <h2>Adicionar produto</h2>
 
                         <TextField placeholder="Nome" label="Nome" name="nome" onChange={this.handleChange} /> <br />
+                        <div className="error">{this.state.validation.nome}</div>
                         <TextField placeholder="Preço" label="Preço" name="preco" type="number" onChange={this.handleChange} /> <br />
                         <div className="error">{this.state.validation.preco}</div>
                         <TextField placeholder="Parcelas" label="Parcelas" name="maxparcelas" type="number" onChange={this.handleChange} /> <br /> <br />
@@ -133,7 +145,15 @@ export default class PageProdutos extends React.Component {
 
                             <div className="produto-content">
 
-                                <h2>{produto.nome}</h2>
+                                <h2>
+                                    <Link to={{
+                                        pathname: `produto/${produto.id}`
+                                    }}>
+                                        {produto.nome.length > 40 ? produto.nome.substring(0, 40) + '...' : produto.nome}
+                                    </Link>
+                                </h2>
+
+                                <p>{produto.preco}c</p>
 
                                 {this.state.user.id === produto.user.id
                                     ? <p>Oferta <strong>sua</strong></p>
@@ -141,20 +161,31 @@ export default class PageProdutos extends React.Component {
 
                                     <>
                                         <p>
-                                            Oferta de <strong style={{ cursor: 'pointer' }}>
-                                                {produto.user.nome}
-                                            </strong>
+                                            Oferta de
+                                            <Link to={{
+                                                pathname: `/perfil/${produto.user.id}`
+                                            }} style={{
+                                                marginLeft: '5px'
+                                            }}>
+                                                <strong style={{ cursor: 'pointer' }}>
+                                                    {String(produto.user.nome.length) > 10 ? String(produto.user.nome.substring(0, 10)) + '...' : produto.user.nome}
+                                                </strong>
+                                            </Link>
                                         </p>
                                     </>
                                 }
 
-                                <p>{produto.preco}c</p>
-                                <p>Máximo de {produto.maxparcelas} parcelas de {(produto.preco / produto.maxparcelas).toFixed(2)}c</p>
+                                <p className="p-span"> <span className="material-icons" style={{
+                                    color: 'green',
+                                    marginRight: '3px'
+                                }}>payment</span>{produto.maxparcelas}x de {(produto.preco / produto.maxparcelas).toFixed(2)}c sem juros</p>
 
                                 {this.state.user.id === produto.user.id
-                                    ? <div style={{ color: 'crimson' }}>
-                                        <span style={{ cursor: 'pointer' }} className="material-icons" onClick={() => this.deleteProduto(produto.id)}>delete</span>
-                                    </div>
+                                    ?
+                                    <span style={{
+                                        cursor: 'pointer', lineHeight: '0', color: 'crimson', margin: '20px 0'
+                                    }} className="material-icons" onClick={() => this.deleteProduto(produto.id)}>delete</span>
+
                                     : <div></div>
                                 }
 
@@ -163,8 +194,9 @@ export default class PageProdutos extends React.Component {
 
                         </div>
 
-                    </div>
-                ))}
+                    </div >
+                ))
+                }
                 <div className="add-produto" onClick={() => this.setState({ toggleDrawer: true })}>
                     <span className="material-icons">add</span>
                 </div>

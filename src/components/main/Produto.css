@@ -1,0 +1,36 @@
+.p-container {
+  display: flex;
+  margin: 50px;
+  box-shadow: 2px 0px 6px 2px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+
+.p-img {
+  border: solid 1px #ddd;
+  height: 400px;
+  width: 40%;
+  padding: 5px;
+}
+
+.p-img img {
+  height: 100%;
+  width: 100%;
+}
+
+.p-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin: 10px 10px 0 40px;
+    overflow: hidden;
+}
+
+.p-content .preco{
+    color: #333;
+    font-size: 40px;
+    margin: 0;
+}
+
+.p-content h2{
+    margin: 0;
+}

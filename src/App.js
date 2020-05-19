@@ -3,6 +3,8 @@ import Login from './components/login/Login'
 import Register from './components/login/Register'
 import Session from './components/session/session'
 import Home from './components/main/Home'
+import Produto from './components/main/Produto'
+import Perfil from './components/main/Perfil'
 import { createMuiTheme } from '@material-ui/core/styles'
 import { ThemeProvider } from '@material-ui/core'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
@@ -25,12 +27,14 @@ export default class App extends React.Component {
           {session.isLogado()
             ?
             <>
-              <Route path="/" component={Home} />
+              <Route exact path="/" component={Home} />
+              <Route path="/produto/:id" component={Produto} />
+              <Route path="/perfil/:id" component={Perfil} />
             </>
             :
             <Switch>
-              <Route exact path="/" component={Login} />
               <Route path="/registrar" component={Register} />
+              <Route exact path="/*" component={Login} />
             </Switch>
           }
         </ThemeProvider>
