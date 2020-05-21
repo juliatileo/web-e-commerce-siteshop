@@ -120,15 +120,10 @@ export default class Perfil extends React.Component {
                     width: '100%',
                     fontSize: '30px'
                 }}>Usuário não existe</div> : <>
-                        {this.state.isLoading ? <div style={{
-                            display: 'flex',
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                            height: '100vh',
-                            width: '100vw'
-                        }}>
+                        {this.state.isLoading ? <div className="loading">
                             <ReactLoading type="spin" height={50} width={50} color="black" />
-                        </div> : <div className="u-container">
+                        </div>
+                            : <div className="u-container">
 
                                 <h2>Dados</h2>
 

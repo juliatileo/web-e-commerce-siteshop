@@ -6,6 +6,8 @@ import Home from './components/main/Home'
 import Produto from './components/main/Produto'
 import Perfil from './components/main/Perfil'
 import Carrinho from './components/main/Carrinho'
+import Historico from './components/main/Historico'
+import Ganhar from './components/main/Ganhar'
 import { createMuiTheme } from '@material-ui/core/styles'
 import { ThemeProvider } from '@material-ui/core'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
@@ -32,6 +34,8 @@ export default class App extends React.Component {
               <Route path="/produto/:id" component={Produto} />
               <Route path="/perfil/:id" component={Perfil} />
               <Route path="/carrinho/:id" component={Carrinho} />
+              <Route path="/historico/:id" component={Historico} />
+              <Route path="/ganhar" component={Ganhar} />
             </>
             :
             <Switch>

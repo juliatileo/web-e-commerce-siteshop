@@ -1,0 +1,23 @@
+.g-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 50px;
+}
+
+.g-card {
+  border: 1px solid #ddd;
+  border-radius: 2px;
+  height: 200px;
+  padding: 20px 20px 0px 20px;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.g-card button {
+  color: white;
+}

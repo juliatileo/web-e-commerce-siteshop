@@ -37,6 +37,25 @@ export default class Carrinho extends React.Component {
             .catch(err => console.log(err))
     }
 
+    comprarProduto = (id, vendedorid, produtoid, preco) => {
+        let data = new FormData()
+        data.append('comprador_id', this.state.user.id)
+        data.append('vendedor_id', vendedorid)
+        data.append('produto_id', produtoid)
+        data.append('carrinho_id', id)
+        data.append('preco', preco)
+        axios({
+            method: 'PUT',
+            url: `${url}/venda`,
+            data: data
+        })
+            .then((res) => {
+                console.log(res.data)
+                this.getCarrinho()
+            })
+            .catch(err => console.log(err))
+    }
+
     componentDidMount() {
         const session = new Session()
         const user = session.getUserInfo()[0]
@@ -63,15 +82,15 @@ export default class Carrinho extends React.Component {
                                                 <img src={carrinho.produto.imagem} alt="produto" />
                                             </div>
                                             <div className="c-content">
-                                                {carrinho.produto.nome}
+                                                <h3>{carrinho.produto.nome}</h3>
                                             </div>
 
                                             <div className="c-content">
-                                                {carrinho.produto.preco}c
+                                                <h3>{carrinho.produto.preco}c</h3>
                                             </div>
 
                                             <div className="c-content">
-                                                <Button variant="contained" color="primary">Comprar</Button>
+                                                <Button variant="contained" color="primary" onClick={() => this.comprarProduto(carrinho.id, carrinho.produto.user_id, carrinho.produto.id, carrinho.produto.preco)}>Comprar</Button>
                                             </div>
 
                                             <div className="c-content">

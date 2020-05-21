@@ -22,8 +22,7 @@ export default class PageProdutos extends React.Component {
                 maxparcelas: ''
             },
             toggleDrawer: false,
-            user: {},
-            isLoading: true
+            user: {}
         }
     }
 

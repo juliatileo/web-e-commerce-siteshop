@@ -23,8 +23,8 @@
 }
 
 .c-img {
-  height: 100px;
-  width: 100px;
+  height: 150px;
+  width: 150px;
 }
 
 .c-img img {
@@ -34,7 +34,7 @@
 
 .c-info {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
   width: 100%;
   margin: 10px;
 }

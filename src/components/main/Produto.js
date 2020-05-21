@@ -59,13 +59,9 @@ export default class Produto extends React.Component {
 
                 {
                     this.state.isLoading
-                        ? <div style={{
-                            display: 'flex',
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                            height: '100vh',
-                            width: '100vw'
-                        }}><ReactLoading type="spin" color="black" height={30} width={30} /></div>
+                        ? <div className="loading">
+                            <ReactLoading type="spin" color="black" height={30} width={30} />
+                        </div>
                         : <div className="p-container">
 
                             <div className="p-img">
