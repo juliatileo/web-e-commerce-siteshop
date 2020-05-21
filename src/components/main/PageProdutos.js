@@ -27,13 +27,6 @@ export default class PageProdutos extends React.Component {
         }
     }
 
-    async componentDidMount() {
-        this.getProdutos()
-        const session = new Session()
-        const user = await session.getUserInfo()[0]
-        this.setState({ user: user })
-    }
-
     getProdutos = () => {
         axios({
             method: 'GET',
@@ -115,6 +108,13 @@ export default class PageProdutos extends React.Component {
             .catch(err => console.log(err))
     }
 
+    async componentDidMount() {
+        this.getProdutos()
+        const session = new Session()
+        const user = await session.getUserInfo()[0]
+        this.setState({ user: user })
+    }
+
     render() {
         return (
             <>
@@ -131,7 +131,7 @@ export default class PageProdutos extends React.Component {
                         <div className="error">{this.state.validation.maxparcelas}</div>
                         <TextField type="file" onChange={this.handleImagem} /> <br /> <br />
 
-                        <Button variant="contained" color="primary" style={{ color: 'white' }} onClick={this.validate}>Adicionar</Button>
+                        <Button variant="contained" color="primary" style={{ color: 'white' }} onClick={() => this.validate()}>Adicionar</Button>
                     </div>
                 </Drawer>
                 {this.state.produtos.map(produto => (
@@ -164,9 +164,10 @@ export default class PageProdutos extends React.Component {
                                             Oferta de
                                             <Link to={{
                                                 pathname: `/perfil/${produto.user.id}`
-                                            }} style={{
-                                                marginLeft: '5px'
-                                            }}>
+                                            }}
+                                                style={{
+                                                    marginLeft: '5px'
+                                                }}>
                                                 <strong style={{ cursor: 'pointer' }}>
                                                     {String(produto.user.nome.length) > 10 ? String(produto.user.nome.substring(0, 10)) + '...' : produto.user.nome}
                                                 </strong>
@@ -194,7 +195,7 @@ export default class PageProdutos extends React.Component {
 
                         </div>
 
-                    </div >
+                    </div>
                 ))
                 }
                 <div className="add-produto" onClick={() => this.setState({ toggleDrawer: true })}>

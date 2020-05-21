@@ -1,0 +1,40 @@
+.c-container {
+  margin: 30px;
+  box-shadow: 1px 0 6px rgba(0, 0, 0, 0.2);
+  padding: 50px;
+}
+
+.c-card {
+  padding: 50px;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  margin: 10px;
+}
+
+.c-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.c-content button {
+  width: 100px !important;
+  color: white;
+}
+
+.c-img {
+  height: 100px;
+  width: 100px;
+}
+
+.c-img img {
+  height: 100%;
+  width: 100%;
+}
+
+.c-info {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+  margin: 10px;
+}

@@ -11,7 +11,10 @@ export default class Login extends React.Component {
         email: '',
         senha: '',
         imagem: '',
-        redirecionar: false
+        redirecionar: false,
+        validation: {
+            register: ''
+        }
     }
 
     handleChange = e => {
@@ -32,12 +35,17 @@ export default class Login extends React.Component {
         axios({
             method: 'POST',
             url: `${url}/user`,
+            headers: { 'Content-Type': 'multipart/form-data' },
             data: data
         })
             .then(() => {
                 this.setState({ redirecionar: true })
             })
-            .catch(err => console.log(err))
+            .catch(() => {
+                let { validation } = this.state
+                validation.register = 'Usuário já existe'
+                this.setState({ validation: validation })
+            })
     }
 
     render() {
@@ -53,6 +61,7 @@ export default class Login extends React.Component {
                         <TextField type="text" label="E-mail" name="email" onChange={this.handleChange} value={email} /> <br />
                         <TextField type="password" label="Senha" name="senha" onChange={this.handleChange} value={senha} /> <br />
                         <TextField type="file" accept="image/x-png,image/gif,image/jpeg" name="imagem" onChange={this.handleImage} /> <br />
+                        <div class="error">{this.state.validation.register}</div>
                         <Button variant="contained" color="primary" disableElevation onClick={this.registrar}>Registrar</Button>
                     </Paper>
                 </div>

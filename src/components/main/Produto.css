@@ -17,20 +17,27 @@
   width: 100%;
 }
 
-.p-content{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    margin: 10px 10px 0 40px;
-    overflow: hidden;
+.p-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin: 10px 10px 0 40px;
+  overflow: hidden;
 }
 
-.p-content .preco{
-    color: #333;
-    font-size: 40px;
-    margin: 0;
+.p-content .preco {
+  color: #333;
+  font-size: 40px;
+  margin: 0;
 }
 
-.p-content h2{
-    margin: 0;
+.p-content h2 {
+  margin: 0;
+}
+
+.p-content .added {
+  text-align: center;
+  color: #0b3817;
+  background: #8fffad;
+  border-radius: 6px;
 }

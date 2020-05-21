@@ -33,7 +33,11 @@ export default class Header extends React.Component {
                         <Button style={{ textTransform: 'none', width: '100%', borderBottom: '1px solid #ddd', borderRadius: '0' }}>Perfil</Button>
                     </Link>
 
-                    <Button style={{ textTransform: 'none', width: '100%', borderBottom: '1px solid #ddd', borderRadius: '0' }}>Carrinho</Button>
+                    <Link to={{
+                        pathname: `/carrinho/${user.id}`
+                    }}>
+                        <Button style={{ textTransform: 'none', width: '100%', borderBottom: '1px solid #ddd', borderRadius: '0' }}>Carrinho</Button>
+                    </Link>
                 </Drawer>
                 <header>
                     <ul className="header-ul">
