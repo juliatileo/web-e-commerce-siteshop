@@ -32,14 +32,13 @@ export default class Produto extends React.Component {
 
     addToCarrinho = () => {
         const user = new Session().getUserInfo()[0]
-        let data = new FormData()
-        data.append('user_id', user.id)
-        data.append('produto_id', this.state.produto.id)
-        data.append('id', this.state.produto.id)
         axios({
             method: 'POST',
-            url: `${url}/carrinho`,
-            data: data
+            url: `${url}/carrinhos`,
+            data: {
+                user_id: user.id,
+                produto_id: this.state.produto.id
+            }
         })
             .then((res) => {
                 console.log(res.data)
@@ -74,7 +73,7 @@ export default class Produto extends React.Component {
                                 <p className="p-span">
                                     <span className="material-icons" style={{ color: 'green', marginRight: '3px' }}>payment</span>{produto.maxparcelas}x de {(produto.preco / produto.maxparcelas).toFixed(2)}c sem juros
                                 </p>
-                                {Number(user.id) === Number(produto.user.id)
+                                {Number(user.id) === Number(produto.user_id)
                                     ? null
                                     :
                                     <>

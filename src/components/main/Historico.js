@@ -22,7 +22,7 @@ export default class Historico extends React.Component {
         const { match: { params } } = this.props
         axios({
             method: 'GET',
-            url: `${url}/user/${params.id}`
+            url: `${url}/users/${params.id}`
         })
             .then(res => {
                 this.setState({ user: res.data[0] })
@@ -34,7 +34,7 @@ export default class Historico extends React.Component {
         const { match: { params } } = this.props
         axios({
             method: 'GET',
-            url: `${url}/venda/${params.id}`
+            url: `${url}/vendas/${params.id}`
         })
             .then(res => {
                 console.log(res.data)
@@ -73,21 +73,21 @@ export default class Historico extends React.Component {
                                             ?
                                             <div className="h-card" key={compra.id}>
                                                 <div className="h-img">
-                                                    <img src={compra.produto.imagem} alt="produto" />
+                                                    <img src={compra.produto_imagem} alt="produto" />
                                                 </div>
 
                                                 <div className="h-content">
-                                                    <h3>{String(compra.produto.nome).length > 30 ? String(compra.produto.nome).substring(0, 30) + '...' : compra.produto.nome}</h3>
-                                                    <p>{compra.produto.preco}c</p>
+                                                    <h3>{String(compra.produto_nome).length > 30 ? String(compra.produto_nome).substring(0, 30) + '...' : compra.produto_nome}</h3>
+                                                    <p>{compra.preco}c</p>
                                                 </div>
 
                                                 <div className="h-content-vendedor">
                                                     <div className="h-img-vendedor">
-                                                        <img src={compra.vendedor.profpic} alt="vendedor"></img>
+                                                        <img src={compra.vendedor_imagem} alt="vendedor"></img>
                                                     </div>
                                                     <ul>
                                                         <li><h4 style={{ margin: '0 0 5px 0' }}>Vendedor</h4></li>
-                                                        <li>{compra.vendedor.nome}</li>
+                                                        <li>{compra.vendedor_nome}</li>
                                                     </ul>
                                                 </div>
 
@@ -104,21 +104,21 @@ export default class Historico extends React.Component {
                                     ?
                                     <div className="h-card" key={venda.id}>
                                         <div className="h-img">
-                                            <img src={venda.produto.imagem} alt="produto" />
+                                            <img src={venda.produto_imagem} alt="produto" />
                                         </div>
 
                                         <div className="h-content">
-                                            <h3>{String(venda.produto.nome).length > 30 ? String(venda.produto.nome).substring(0, 30) + '...' : venda.produto.nome}</h3>
-                                            <p>{venda.produto.preco}c</p>
+                                            <h3>{String(venda.produto_nome).length > 30 ? String(venda.produto_nome).substring(0, 30) + '...' : venda.produto_nome}</h3>
+                                            <p>{venda.preco}c</p>
                                         </div>
 
                                         <div className="h-content-vendedor">
                                             <div className="h-img-vendedor">
-                                                <img src={venda.comprador.profpic} alt="vendedor"></img>
+                                                <img src={venda.comprador_imagem} alt="vendedor"></img>
                                             </div>
                                             <ul>
                                                 <li><h4 style={{ margin: '0 0 5px 0' }}>Comprador</h4></li>
-                                                <li>{venda.comprador.nome}</li>
+                                                <li>{venda.comprador_nome}</li>
                                             </ul>
                                         </div>
 

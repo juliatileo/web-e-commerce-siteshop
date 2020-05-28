@@ -19,7 +19,7 @@ export default class Carrinho extends React.Component {
         const { match: { params } } = this.props
         axios({
             method: 'GET',
-            url: `${url}/carrinho/${params.id}`
+            url: `${url}/carrinhos/${params.id}`
         })
             .then(res => {
                 console.log(res.data)
@@ -31,23 +31,23 @@ export default class Carrinho extends React.Component {
     deleteCarrinho = id => {
         axios({
             method: 'DELETE',
-            url: `${url}/carrinho/${id}`
+            url: `${url}/carrinhos/${id}`
         })
             .then(() => this.getCarrinho())
             .catch(err => console.log(err))
     }
 
-    comprarProduto = (id, vendedorid, produtoid, preco) => {
-        let data = new FormData()
-        data.append('comprador_id', this.state.user.id)
-        data.append('vendedor_id', vendedorid)
-        data.append('produto_id', produtoid)
-        data.append('carrinho_id', id)
-        data.append('preco', preco)
+    comprarProduto = (produtoid, vendedorid, carrinhoid, preco) => {
         axios({
-            method: 'PUT',
-            url: `${url}/venda`,
-            data: data
+            method: 'POST',
+            url: `${url}/vendas`,
+            data: {
+                comprador_id: this.state.user.id,
+                produto_id: produtoid,
+                vendedor_id: vendedorid,
+                carrinho_id: carrinhoid,
+                preco: preco
+            }
         })
             .then((res) => {
                 console.log(res.data)
@@ -72,25 +72,25 @@ export default class Carrinho extends React.Component {
                     {this.state.user.id === Number(params.id)
                         ?
                         this.state.carrinho.map(carrinho =>
-                            !carrinho.produto
+                            !carrinho.produto_id
                                 ? null
                                 :
                                 <div key={carrinho.id}>
                                     <div className="c-card">
                                         <div className="c-info">
                                             <div className="c-img">
-                                                <img src={carrinho.produto.imagem} alt="produto" />
+                                                <img src={carrinho.produto_imagem} alt="produto" />
                                             </div>
                                             <div className="c-content">
-                                                <h3>{carrinho.produto.nome}</h3>
-                                            </div>
-
-                                            <div className="c-content">
-                                                <h3>{carrinho.produto.preco}c</h3>
+                                                <h3>{carrinho.produto_nome}</h3>
                                             </div>
 
                                             <div className="c-content">
-                                                <Button variant="contained" color="primary" onClick={() => this.comprarProduto(carrinho.id, carrinho.produto.user_id, carrinho.produto.id, carrinho.produto.preco)}>Comprar</Button>
+                                                <h3>{carrinho.produto_preco}c</h3>
+                                            </div>
+
+                                            <div className="c-content">
+                                                <Button variant="contained" color="primary" onClick={() => this.comprarProduto(carrinho.produto_id, carrinho.vendedor_id, carrinho.id, carrinho.produto_preco)}>Comprar</Button>
                                             </div>
 
                                             <div className="c-content">

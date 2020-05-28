@@ -34,7 +34,7 @@ export default class Login extends React.Component {
         data.append('profpic', this.state.imagem)
         axios({
             method: 'POST',
-            url: `${url}/user`,
+            url: `${url}/users`,
             headers: { 'Content-Type': 'multipart/form-data' },
             data: data
         })
@@ -61,7 +61,7 @@ export default class Login extends React.Component {
                         <TextField type="text" label="E-mail" name="email" onChange={this.handleChange} value={email} /> <br />
                         <TextField type="password" label="Senha" name="senha" onChange={this.handleChange} value={senha} /> <br />
                         <TextField type="file" accept="image/x-png,image/gif,image/jpeg" name="imagem" onChange={this.handleImage} /> <br />
-                        <div class="error">{this.state.validation.register}</div>
+                        <div className="error">{this.state.validation.register}</div>
                         <Button variant="contained" color="primary" disableElevation onClick={this.registrar}>Registrar</Button>
                     </Paper>
                 </div>

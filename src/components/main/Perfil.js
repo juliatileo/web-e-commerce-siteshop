@@ -39,14 +39,14 @@ export default class Perfil extends React.Component {
         const { match: { params } } = this.props
         axios({
             method: 'GET',
-            url: `${url}/user/${params.id}`
+            url: `${url}/users/${params.id}`
         })
             .then(res => {
                 if (!res.data[0])
                     this.setState({ exists: false })
                 console.log(res.data[0])
                 this.setState({ user: res.data[0] })
-                this.setState({ created: this.state.user.created_at.split('-').join().split(':').join().split(',').join().split(' ').join().split(',') })
+                this.setState({ created: this.state.user.created_at.split('-').join().split('T').join().split('.').join().split(',') })
                 this.setState({ isLoading: false })
             })
             .catch(err => console.log(err))
@@ -61,7 +61,7 @@ export default class Perfil extends React.Component {
         data.append('profpic', this.state.profpic)
         axios({
             method: 'PUT',
-            url: `${url}/user/${params.id}`,
+            url: `${url}/users/${params.id}`,
             headers: { 'Content-Type': 'multipart/formdata' },
             data: data
         })
@@ -136,7 +136,7 @@ export default class Perfil extends React.Component {
 
                                             <div className="u-name">{String(user.nome).length > 30 ? String(user.nome).substring(0, 30) + '...' : user.nome}</div>
                                             <p>{user.creditos} créditos</p>
-                                            <p>Registrou-se em {this.state.created[2]}/{this.state.created[1]}/{this.state.created[0]} às {this.state.created[3]}:{this.state.created[4]}</p>
+                                            <p>Registrou-se em {this.state.created[2]}/{this.state.created[1]}/{this.state.created[0]} às {this.state.created[3]}</p>
 
                                             <div className="u-data">
                                                 <div><span className="material-icons">email</span>{String(user.email).length > 20 ? String(user.email).substring(0, 20) + '...' : user.email}</div>
@@ -153,7 +153,7 @@ export default class Perfil extends React.Component {
 
                                             <div className="u-name">{String(user.nome).length > 30 ? String(user.nome).substring(0, 30) + '...' : user.nome}</div>
                                             <p>{user.creditos} créditos</p>
-                                            <p>Registrou-se em {this.state.created[2]}/{this.state.created[1]}/{this.state.created[0]} às {this.state.created[3]}:{this.state.created[4]}</p>
+                                            <p>Registrou-se em {this.state.created[2]}/{this.state.created[1]}/{this.state.created[0]} às {this.state.created[3]}</p>
                                         </>
                                 }
 

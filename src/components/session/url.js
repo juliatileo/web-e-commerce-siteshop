@@ -1,3 +1,3 @@
-let url = 'http://localhost:3333'
+let url = 'https://e-commerce-siteshop.herokuapp.com'
 
 export default url

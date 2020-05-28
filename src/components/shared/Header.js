@@ -44,12 +44,6 @@ export default class Header extends React.Component {
                     }}>
                         <Button style={{ textTransform: 'none', width: '100%', borderBottom: '1px solid #ddd', borderRadius: '0' }}>Histórico</Button>
                     </Link>
-
-                    <Link to={{
-                        pathname: `/ganhar`
-                    }}>
-                        <Button style={{ textTransform: 'none', width: '100%', borderBottom: '1px solid #ddd', borderRadius: '0' }}>Ganhar créditos</Button>
-                    </Link>
                 </Drawer>
                 <header>
                     <ul className="header-ul">

@@ -19,16 +19,17 @@ export default class Login extends React.Component {
 
     handleChange = e => {
         this.setState({ [e.target.name]: e.target.value })
+        console.log(this.state.email, this.state.senha)
     }
 
     logar = () => {
-        const data = new FormData()
-        data.append('email', this.state.email)
-        data.append('senha', this.state.senha)
         axios({
             method: 'POST',
             url: `${url}/login`,
-            data: data
+            data: {
+                email: this.state.email,
+                senha: this.state.senha
+            }
         })
             .then((res) => {
                 const session = new Session()

@@ -154,7 +154,7 @@ export default class PageProdutos extends React.Component {
 
                                 <p>{produto.preco}c</p>
 
-                                {this.state.user.id === produto.user.id
+                                {this.state.user.id === produto.user_id
                                     ? <p>Oferta <strong>sua</strong></p>
                                     :
 
@@ -162,13 +162,13 @@ export default class PageProdutos extends React.Component {
                                         <p>
                                             Oferta de
                                             <Link to={{
-                                                pathname: `/perfil/${produto.user.id}`
+                                                pathname: `/perfil/${produto.user_id}`
                                             }}
                                                 style={{
                                                     marginLeft: '5px'
                                                 }}>
                                                 <strong style={{ cursor: 'pointer' }}>
-                                                    {String(produto.user.nome.length) > 10 ? String(produto.user.nome.substring(0, 10)) + '...' : produto.user.nome}
+                                                    {String(produto.username) > 10 ? String(produto.username.substring(0, 10)) + '...' : produto.username}
                                                 </strong>
                                             </Link>
                                         </p>
@@ -180,7 +180,7 @@ export default class PageProdutos extends React.Component {
                                     marginRight: '3px'
                                 }}>payment</span>{produto.maxparcelas}x de {(produto.preco / produto.maxparcelas).toFixed(2)}c sem juros</p>
 
-                                {this.state.user.id === produto.user.id
+                                {this.state.user.id === produto.user_id
                                     ?
                                     <span style={{
                                         cursor: 'pointer', lineHeight: '0', color: 'crimson', margin: '20px 0'
